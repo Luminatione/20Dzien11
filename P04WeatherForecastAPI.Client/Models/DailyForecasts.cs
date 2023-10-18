@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace P04WeatherForecastAPI.Client.Models
 {
 	// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-	internal class DailyForecast
+	public class DailyForecast
 	{
 		public DateTime Date { get; set; }
 		public int EpochDate { get; set; }
@@ -19,14 +19,14 @@ namespace P04WeatherForecastAPI.Client.Models
 		public string Link { get; set; }
 	}
 
-	internal class Day
+	public class Day
 	{
 		public int Icon { get; set; }
 		public string IconPhrase { get; set; }
 		public bool HasPrecipitation { get; set; }
 	}
 
-	internal class Headline
+	public class Headline
 	{
 		public DateTime EffectiveDate { get; set; }
 		public int EffectiveEpochDate { get; set; }
@@ -39,28 +39,28 @@ namespace P04WeatherForecastAPI.Client.Models
 		public string Link { get; set; }
 	}
 
-	internal class Maximum
+	public class Maximum
 	{
 		public int Value { get; set; }
 		public string Unit { get; set; }
 		public int UnitType { get; set; }
 	}
 
-	internal class Minimum
+	public class Minimum
 	{
 		public int Value { get; set; }
 		public string Unit { get; set; }
 		public int UnitType { get; set; }
 	}
 
-	internal class Night
+	public class Night
 	{
 		public int Icon { get; set; }
 		public string IconPhrase { get; set; }
 		public bool HasPrecipitation { get; set; }
 	}
 
-	internal class Root
+	public class Root
 	{
 		public Headline Headline { get; set; }
 		public List<DailyForecast> DailyForecasts { get; set; }

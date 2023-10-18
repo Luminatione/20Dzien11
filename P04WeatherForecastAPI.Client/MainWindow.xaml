@@ -3,27 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:P04WeatherForecastAPI.Client"
+        xmlns:local="clr-namespace:P04WeatherForecastAPI.Client" xmlns:viewmodel="clr-namespace:P04WeatherForecastAPI.Client.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="348" Width="509">
     <DockPanel>
         <StackPanel Width="150" DockPanel.Dock="Left">
             <Label Content="City:" ></Label>
             <TextBox x:Name="txtCity"></TextBox>
-            <Button x:Name="btnSearch" Content="Search" Click="btnSearch_Click"></Button>
-            <ListBox x:Name="lbData" DisplayMemberPath="LocalizedName" SelectionChanged="lbData_SelectionChanged"></ListBox>
+            <Button x:Name="btnSearch" Content="Search" Command="{Binding LoadCitiesCommand}" CommandParameter="{Binding Text, ElementName=txtCity}"></Button>
+            <ListBox x:Name="lbData" ItemsSource="{Binding Cities}" SelectedItem="{Binding SelectedCity}" DisplayMemberPath="LocalizedName"></ListBox>
         </StackPanel>
         <StackPanel>
             <Label HorizontalAlignment="Center" Content="Temperature for city:"></Label>
-            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="..."></Label>
+            <Label x:Name="lblCityName" HorizontalAlignment="Center" Content="{Binding SelectedCity.LocalizedName}"></Label>
             <Label  HorizontalAlignment="Center" Content="is:"></Label>
-            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content=".."></Label>
-            <Label x:Name="lblFrecastHourSelectionLabel" HorizontalAlignment="Center" Content="Temperature in next 1 hour"></Label>
-            <Label x:Name="lblHourlyForecast" HorizontalAlignment="Center" Content=".."></Label>
-            <Button x:Name="btnNextHour" Content="Next" Width="80" Click="btnNextHour_Click"></Button>
-            <Label x:Name="lblFrecastDaySelectionLabel" HorizontalAlignment="Center" Content="Temperature in next 1 day"></Label>
-            <Label x:Name="lblDailyForecast" HorizontalAlignment="Center" Content=".."></Label>
-            <Button x:Name="btnNextDay" Content="Next" Width="80" Click="btnNextDay_Click"></Button>
+            <Label x:Name="lblTemperatureValue" HorizontalAlignment="Center" Content="{Binding CurrentTemperatureViewModel.Temperature}"></Label>
+            <Label x:Name="lblFrecastHourSelectionLabel" HorizontalAlignment="Center" Content="{Binding HourlyForecastLabel.Label}"></Label>
+            <Label x:Name="lblHourlyForecast" HorizontalAlignment="Center" Content="{Binding CurrentTemperatureHourlyForecast.Temperature}"></Label>
+            <Button x:Name="btnNextHour" Content="Next" Width="80" Command="{Binding ShowNextHourlyForecastCommand}" IsEnabled="{Binding CanShowNextForecast}"></Button>
+            <Label x:Name="lblFrecastDaySelectionLabel" HorizontalAlignment="Center" Content="{Binding DailyForecastLabel.Label}"></Label>
+            <Label x:Name="lblDailyForecast" HorizontalAlignment="Center" Content="{Binding CurrentTemperatureDailyForecast.TemperatureRangeValue}"></Label>
+            <Button x:Name="btnNextDay" Content="Next" Width="80" Command="{Binding ShowNextDailyForecastCommand}" IsEnabled="{Binding CanShowNextForecast}"></Button>
         </StackPanel>
     </DockPanel>
 </Window>
