@@ -1,6 +1,6 @@
 ﻿namespace P04WeatherForecastAPI.Client.Models
 {
-    internal class TemperatureValue
+    public class TemperatureValue
     {
         public double Value { get; set; }
         public string Unit { get; set; }
